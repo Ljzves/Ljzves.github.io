@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://ljzves.github.io">
-  <title>git学习笔记 | Leaves&#39;s Blog</title>
+  <title>Qt学习笔记 | Leaves&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="git命令整理基本概念 仓库(Repository)：用来存放项目代码。 收藏(Star)：就是收藏 分叉(fork)：复制一个项目，作为个人项目修改。 合并请求(Pull request) 关注(Watch) (lssue)">
+  <meta name="description" content="常用控件窗口常用控件菜单栏1234567891011121314#include &amp;lt;QMenuBar&amp;gt;#include &amp;lt;QMenu&amp;gt;...    // 菜单栏    QMenuBar *mBar = menuBar();    // 添加菜单    QMenu *pFile = mBar-&amp;gt;addMenu(&quot;文件&quot;);    // 菜单项和动作    QAction">
 <meta name="keywords" content="工程,笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git学习笔记">
-<meta property="og:url" content="http://ljzves.github.io/2017/05/15/Github/index.html">
+<meta property="og:title" content="Qt学习笔记">
+<meta property="og:url" content="http://ljzves.github.io/2017/05/18/2017-05-18/index.html">
 <meta property="og:site_name" content="Leaves&#39;s Blog">
-<meta property="og:description" content="git命令整理基本概念 仓库(Repository)：用来存放项目代码。 收藏(Star)：就是收藏 分叉(fork)：复制一个项目，作为个人项目修改。 合并请求(Pull request) 关注(Watch) (lssue)">
-<meta property="og:updated_time" content="2017-05-19T10:34:48.000Z">
+<meta property="og:description" content="常用控件窗口常用控件菜单栏1234567891011121314#include &amp;lt;QMenuBar&amp;gt;#include &amp;lt;QMenu&amp;gt;...    // 菜单栏    QMenuBar *mBar = menuBar();    // 添加菜单    QMenu *pFile = mBar-&amp;gt;addMenu(&quot;文件&quot;);    // 菜单项和动作    QAction">
+<meta property="og:updated_time" content="2017-05-19T13:55:04.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git学习笔记">
-<meta name="twitter:description" content="git命令整理基本概念 仓库(Repository)：用来存放项目代码。 收藏(Star)：就是收藏 分叉(fork)：复制一个项目，作为个人项目修改。 合并请求(Pull request) 关注(Watch) (lssue)">
+<meta name="twitter:title" content="Qt学习笔记">
+<meta name="twitter:description" content="常用控件窗口常用控件菜单栏1234567891011121314#include &amp;lt;QMenuBar&amp;gt;#include &amp;lt;QMenu&amp;gt;...    // 菜单栏    QMenuBar *mBar = menuBar();    // 添加菜单    QMenu *pFile = mBar-&amp;gt;addMenu(&quot;文件&quot;);    // 菜单项和动作    QAction">
   
     <link rel="alternative" href="/atom.xml" title="Leaves&#39;s Blog" type="application/atom+xml">
   
@@ -154,55 +154,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Github" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-2017-05-18" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      git学习笔记
+      Qt学习笔记
     </h1>
   
 
         
-        <a href="/2017/05/15/Github/" class="archive-article-date">
-  	<time datetime="2017-05-15T10:21:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-15</time>
+        <a href="/2017/05/18/2017-05-18/" class="archive-article-date">
+  	<time datetime="2017-05-18T10:21:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-18</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="git命令整理"><a href="#git命令整理" class="headerlink" title="git命令整理"></a>git命令整理</h1><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><ul>
-<li>仓库(Repository)：用来存放项目代码。</li>
-<li>收藏(Star)：就是收藏</li>
-<li>分叉(fork)：复制一个项目，作为个人项目修改。</li>
-<li>合并请求(Pull request)</li>
-<li>关注(Watch)</li>
-<li>(lssue)<a id="more"></a>
-<h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3></li>
-<li>git config –global user.name ‘’</li>
-<li>git config –global user.email ‘’</li>
-<li>git init：初始化仓库</li>
-<li>git status：文件状态</li>
-<li>git add <file>：加入到缓存区</file></li>
-<li>git commit -m “” ：添加到库中 </li>
-<li>git log：日志</li>
-<li>git log –pretty=oneline ：简略版日志</li>
-<li>git reset –hard 3628164 ：会到历史版本</li>
-<li>git reset –hard HEAD^ ：回到上一个版本</li>
-<li>git reflog ：用来记录你的每一个命令</li>
-<li>git reset HEAD readme.txt ：撤回</li>
-<li>git checkout – <file>: 用版本库里的版本替换工作区的版本</file></li>
-</ul>
-<h3 id="关联远程库"><a href="#关联远程库" class="headerlink" title="关联远程库"></a>关联远程库</h3><ul>
-<li>ssh-keygen -t rsa -C “youremail@example.com”</li>
-<li>git remote add origin git@github.com:michaelliao/learngit.git</li>
-<li>git push -u origin master</li>
-</ul>
-<h3 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h3><p>查看分支：git branch<br>创建分支：git branch <name><br>切换分支：git checkout <name><br>创建+切换分支：git checkout -b <name><br>合并某分支到当前分支：git merge <name><br>删除分支：git branch -d <name><br>分支合并图：git log –graph</name></name></name></name></name></p>
-<h3 id="教程推荐"><a href="#教程推荐" class="headerlink" title="教程推荐"></a>教程推荐</h3><p><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">Git教程</a></p>
+        <h1 id="常用控件"><a href="#常用控件" class="headerlink" title="常用控件"></a>常用控件</h1><h1 id="窗口常用控件"><a href="#窗口常用控件" class="headerlink" title="窗口常用控件"></a>窗口常用控件</h1><h2 id="菜单栏"><a href="#菜单栏" class="headerlink" title="菜单栏"></a>菜单栏</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QMenuBar&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QMenu&gt;</span></span></div><div class="line">...</div><div class="line">    <span class="comment">// 菜单栏</span></div><div class="line">    QMenuBar *mBar = menuBar();</div><div class="line">    <span class="comment">// 添加菜单</span></div><div class="line">    QMenu *pFile = mBar-&gt;addMenu(<span class="string">"文件"</span>);</div><div class="line">    <span class="comment">// 菜单项和动作</span></div><div class="line">    QAction  *pNew = pFile-&gt;addAction(<span class="string">"新建"</span>);</div><div class="line">    connect(pNew,  &amp;QAction::triggered, [=]() &#123;</div><div class="line">        qDebug() &lt;&lt; <span class="string">"新建被触发"</span>;</div><div class="line">    &#125;);</div><div class="line">    pFile-&gt;addSeparator(); <span class="comment">// 分割线</span></div><div class="line">    QAction  *pOpen = pFile-&gt;addAction(<span class="string">"打开"</span>);</div></pre></td></tr></table></figure>
 
       
 
@@ -307,7 +279,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://ljzves.github.io/2017/05/15/Github/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://ljzves.github.io/2017/05/18/2017-05-18/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -321,15 +293,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/05/18/2017-05-18/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Qt学习笔记
-        
-      </div>
-    </a>
   
+    <a href="/2017/05/15/Github/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">git学习笔记</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 

@@ -151,6 +151,69 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-2017-05-18" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/18/2017-05-18/">Qt学习笔记</a>
+    </h1>
+  
+
+        
+        <a href="/2017/05/18/2017-05-18/" class="archive-article-date">
+  	<time datetime="2017-05-18T10:21:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="常用控件"><a href="#常用控件" class="headerlink" title="常用控件"></a>常用控件</h1><h1 id="窗口常用控件"><a href="#窗口常用控件" class="headerlink" title="窗口常用控件"></a>窗口常用控件</h1><h2 id="菜单栏"><a href="#菜单栏" class="headerlink" title="菜单栏"></a>菜单栏</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QMenuBar&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QMenu&gt;</span></span></div><div class="line">...</div><div class="line">    <span class="comment">// 菜单栏</span></div><div class="line">    QMenuBar *mBar = menuBar();</div><div class="line">    <span class="comment">// 添加菜单</span></div><div class="line">    QMenu *pFile = mBar-&gt;addMenu(<span class="string">"文件"</span>);</div><div class="line">    <span class="comment">// 菜单项和动作</span></div><div class="line">    QAction  *pNew = pFile-&gt;addAction(<span class="string">"新建"</span>);</div><div class="line">    connect(pNew,  &amp;QAction::triggered, [=]() &#123;</div><div class="line">        qDebug() &lt;&lt; <span class="string">"新建被触发"</span>;</div><div class="line">    &#125;);</div><div class="line">    pFile-&gt;addSeparator(); <span class="comment">// 分割线</span></div><div class="line">    QAction  *pOpen = pFile-&gt;addAction(<span class="string">"打开"</span>);</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工程</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/18/2017-05-18/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-Github" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -158,7 +221,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/15/Github/">git使用</a>
+      <a class="article-title" href="/2017/05/15/Github/">git学习笔记</a>
     </h1>
   
 
@@ -171,8 +234,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>git命令整理</p>
-<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><ul>
+        <h1 id="git命令整理"><a href="#git命令整理" class="headerlink" title="git命令整理"></a>git命令整理</h1><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><ul>
 <li>仓库(Repository)：用来存放项目代码。</li>
 <li>收藏(Star)：就是收藏</li>
 <li>分叉(fork)：复制一个项目，作为个人项目修改。</li>
