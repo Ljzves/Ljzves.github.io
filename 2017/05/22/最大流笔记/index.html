@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="笔记,OI,网络流," />
 
 
 
@@ -90,12 +90,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Leaves&#39;s Blog">
-<meta property="og:url" content="http://ljzves.github.io/index.html">
+<meta name="description" content="最大流算法 dinic详细的分析及算法流程，请参考《算法导论》。 代码1234567891011121314151617181920212223242526272829303132333435363738394041class Dinic &amp;#123; public:  int operator() (int s, int t, int n) &amp;#123;    int max_flow = 0;">
+<meta name="keywords" content="笔记,OI,网络流">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络流笔记">
+<meta property="og:url" content="http://ljzves.github.io/2017/05/22/最大流笔记/index.html">
 <meta property="og:site_name" content="Leaves&#39;s Blog">
+<meta property="og:description" content="最大流算法 dinic详细的分析及算法流程，请参考《算法导论》。 代码1234567891011121314151617181920212223242526272829303132333435363738394041class Dinic &amp;#123; public:  int operator() (int s, int t, int n) &amp;#123;    int max_flow = 0;">
+<meta property="og:updated_time" content="2017-05-23T11:57:21.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Leaves&#39;s Blog">
+<meta name="twitter:title" content="网络流笔记">
+<meta name="twitter:description" content="最大流算法 dinic详细的分析及算法流程，请参考《算法导论》。 代码1234567891011121314151617181920212223242526272829303132333435363738394041class Dinic &amp;#123; public:  int operator() (int s, int t, int n) &amp;#123;    int max_flow = 0;">
 
 
 
@@ -123,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://ljzves.github.io/"/>
+  <link rel="canonical" href="http://ljzves.github.io/2017/05/22/最大流笔记/"/>
 
 
 
 
 
-  <title>Leaves's Blog</title>
+  <title>网络流笔记 | Leaves's Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -155,9 +160,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -250,9 +253,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -278,9 +281,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/22/最大流笔记/" itemprop="url">网络流笔记</a></h1>
+          <h1 class="post-title" itemprop="name headline">网络流笔记</h1>
         
 
         <div class="post-meta">
@@ -327,9 +328,7 @@
       
 
       
-        
-          
-            <h1 id="最大流算法-dinic"><a href="#最大流算法-dinic" class="headerlink" title="最大流算法 dinic"></a>最大流算法 dinic</h1><p>详细的分析及算法流程，请参考《算法导论》。</p>
+        <h1 id="最大流算法-dinic"><a href="#最大流算法-dinic" class="headerlink" title="最大流算法 dinic"></a>最大流算法 dinic</h1><p>详细的分析及算法流程，请参考《算法导论》。</p>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dinic</span> &#123;</span></div><div class="line"> <span class="keyword">public</span>:</div><div class="line">  <span class="function"><span class="keyword">int</span> <span class="title">operator</span><span class="params">()</span> <span class="params">(<span class="keyword">int</span> s, <span class="keyword">int</span> t, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> max_flow = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span> (bfs(&amp;no[s], &amp;no[t], n)) &#123;</div><div class="line">      max_flow += dfs(&amp;no[s], &amp;no[t]);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> max_flow;</div><div class="line">  &#125;</div><div class="line"> <span class="keyword">private</span>:</div><div class="line">  <span class="function"><span class="keyword">bool</span> <span class="title">bfs</span><span class="params">(Node *s, Node *t, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</div><div class="line">      no[i].level = <span class="number">-1</span>; no[i].curr = no[i].fir;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">queue</span>&lt;Node *&gt; q; s-&gt;level = <span class="number">1</span>; q.push(s);</div><div class="line">    <span class="keyword">while</span> (!q.empty()) &#123;</div><div class="line">      Node *v = q.front(); q.pop();</div><div class="line">      <span class="keyword">for</span> (Edge *e = v-&gt;fir; e; e = e-&gt;next) &#123;</div><div class="line">        <span class="keyword">if</span> (e-&gt;flow != <span class="number">0</span> &amp;&amp; e-&gt;to-&gt;level == <span class="number">-1</span>) &#123;</div><div class="line">          e-&gt;to-&gt;level = v-&gt;level+<span class="number">1</span>;</div><div class="line">          <span class="keyword">if</span> (e-&gt;to == t) <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">          q.push(e-&gt;to);</div><div class="line">        &#125; </div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(Node *s, Node *t, <span class="keyword">int</span> limit = oo)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (s == t) <span class="keyword">return</span> limit;</div><div class="line">    <span class="keyword">int</span> cnt_flow = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span> (Edge *&amp;e = s-&gt;curr; e; e = e-&gt;next) &#123;</div><div class="line">      <span class="keyword">if</span> (e-&gt;flow != <span class="number">0</span> &amp;&amp; e-&gt;to-&gt;level == s-&gt;level+<span class="number">1</span>) &#123;</div><div class="line">        <span class="keyword">int</span> flow = dfs(e-&gt;to, t, <span class="built_in">std</span>::min(limit-cnt_flow, e-&gt;flow));</div><div class="line">        cnt_flow += flow; e-&gt;flow -= flow; e-&gt;res-&gt;flow += flow;</div><div class="line">        <span class="keyword">if</span> (cnt_flow == limit) <span class="keyword">return</span> cnt_flow;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (cnt_flow != limit) s-&gt;level = <span class="number">-1</span>;</div><div class="line">    <span class="keyword">return</span> cnt_flow;</div><div class="line">  &#125;</div><div class="line">&#125;dinic;</div></pre></td></tr></table></figure>
 <h1 id="重要结论及模型"><a href="#重要结论及模型" class="headerlink" title="重要结论及模型"></a>重要结论及模型</h1><p> 记 $ S $ 为源点，$T$为汇点，$c(u,v)$为在点u,v之间的容量。</p>
 <h2 id="最大流最小割定理"><a href="#最大流最小割定理" class="headerlink" title="最大流最小割定理"></a>最大流最小割定理</h2><blockquote>
@@ -355,280 +354,97 @@ ans=\Sigma w_i[w_i>0]-maxflow;</script><h3 id="模型理解-1"><a href="#模型�
 <h2 id="上下界网络流"><a href="#上下界网络流" class="headerlink" title="上下界网络流"></a>上下界网络流</h2><p>推荐阅读<a href="https://oi.men.ci/network-flow-with-bounds/" target="_blank" rel="external">Menci的blog</a>。很详细，对四种情况都进行了讨论。</p>
 </blockquote>
 
-          
-        
       
     </div>
 
     <div>
       
+        
+
+      
     </div>
 
     <div>
       
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://ljzves.github.io/2017/05/18/qt笔记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Leaves">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/spring.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Leaves's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
         
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/18/qt笔记/" itemprop="url">Qt学习笔记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-18T18:21:49+08:00">
-                2017-05-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>~欢迎投食~</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wx.png" alt="Leaves WeChat Pay"/>
+          <p>微信打赏</p>
         </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
       
       
-
-      
-        
-          <h1 id="1、常用控件"><a href="#1、常用控件" class="headerlink" title="1、常用控件"></a>1、常用控件</h1><h2 id="菜单栏"><a href="#菜单栏" class="headerlink" title="菜单栏"></a>菜单栏</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QMenuBar&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QMenu&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QAction&gt;</span></span></div><div class="line">...</div><div class="line"><span class="comment">// 菜单栏</span></div><div class="line">QMenuBar *mBar = menuBar();</div><div class="line"><span class="comment">// 添加菜单</span></div><div class="line">QMenu *pFile = mBar-&gt;addMenu(<span class="string">"文件"</span>);</div><div class="line"><span class="comment">// 菜单项和动作</span></div><div class="line">QAction  *pNew = pFile-&gt;addAction(<span class="string">"新建"</span>);</div><div class="line">connect(pNew,  &amp;QAction::triggered, [=]() &#123;</div><div class="line">    qDebug() &lt;&lt; <span class="string">"新建被触发"</span>;</div><div class="line">&#125;);</div><div class="line">pFile-&gt;addSeparator(); <span class="comment">// 分割线</span></div><div class="line">QAction  *pOpen = pFile-&gt;addAction(<span class="string">"打开"</span>);</div></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/05/18/qt笔记/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://ljzves.github.io/2017/05/15/Github/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Leaves">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/spring.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Leaves's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/15/Github/" itemprop="url">git学习笔记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-15T18:21:49+08:00">
-                2017-05-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/zfb.jpg" alt="Leaves Alipay"/>
+          <p>支付宝打赏</p>
         </div>
-      </header>
-    
+      
+    </div>
+  </div>
 
-    <div class="post-body" itemprop="articleBody">
 
       
-      
+    </div>
 
+    <div>
       
         
-          <h1 id="git命令整理"><a href="#git命令整理" class="headerlink" title="git命令整理"></a>git命令整理</h1><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><ul>
-<li>仓库(Repository)：用来存放项目代码。</li>
-<li>收藏(Star)：就是收藏</li>
-<li>分叉(fork)：复制一个项目，作为个人项目修改。</li>
-<li>合并请求(Pull request)</li>
-<li>关注(Watch)</li>
-<li>(lssue)
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/05/15/Github/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
       
     </div>
 
     <footer class="post-footer">
       
-
+        <div class="post-tags">
+          
+            <a href="/tags/笔记/" rel="tag"># 笔记</a>
+          
+            <a href="/tags/OI/" rel="tag"># OI</a>
+          
+            <a href="/tags/网络流/" rel="tag"># 网络流</a>
+          
+        </div>
       
 
       
+        
+      
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/18/qt笔记/" rel="next" title="Qt学习笔记">
+                <i class="fa fa-chevron-left"></i> Qt学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
-        <div class="post-eof"></div>
+
+      
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -636,6 +452,10 @@ ans=\Sigma w_i[w_i>0]-maxflow;</script><h3 id="模型理解-1"><a href="#模型�
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -655,8 +475,17 @@ ans=\Sigma w_i[w_i>0]-maxflow;</script><h3 id="模型理解-1"><a href="#模型�
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/spring.jpg"
@@ -729,6 +558,22 @@ ans=\Sigma w_i[w_i>0]-maxflow;</script><h3 id="模型理解-1"><a href="#模型�
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#最大流算法-dinic"><span class="nav-number">1.</span> <span class="nav-text">最大流算法 dinic</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">1.1.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#重要结论及模型"><span class="nav-number">2.</span> <span class="nav-text">重要结论及模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#最大流最小割定理"><span class="nav-number">2.1.</span> <span class="nav-text">最大流最小割定理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二分图最大匹配"><span class="nav-number">2.2.</span> <span class="nav-text">二分图最大匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构图"><span class="nav-number">2.2.1.</span> <span class="nav-text">构图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型理解"><span class="nav-number">2.2.2.</span> <span class="nav-text">模型理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案输出"><span class="nav-number">2.2.3.</span> <span class="nav-text">方案输出</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最大权闭合子图"><span class="nav-number">2.3.</span> <span class="nav-text">最大权闭合子图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构图-1"><span class="nav-number">2.3.1.</span> <span class="nav-text">构图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型理解-1"><span class="nav-number">2.3.2.</span> <span class="nav-text">模型理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案输出-1"><span class="nav-number">2.3.3.</span> <span class="nav-text">方案输出</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最小路径覆盖"><span class="nav-number">2.4.</span> <span class="nav-text">最小路径覆盖</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构图-2"><span class="nav-number">2.4.1.</span> <span class="nav-text">构图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上下界网络流"><span class="nav-number">2.5.</span> <span class="nav-text">上下界网络流</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -848,6 +693,10 @@ ans=\Sigma w_i[w_i>0]-maxflow;</script><h3 id="模型理解-1"><a href="#模型�
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
 
   
 
