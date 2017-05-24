@@ -90,17 +90,17 @@
 
 
 
-<meta name="description" content="最大流算法 dinic详细的分析及算法流程，请参考《算法导论》。 代码1234567891011121314151617181920212223242526272829303132333435363738394041class Dinic &amp;#123; public:  int operator() (int s, int t, int n) &amp;#123;    int max_flow = 0;">
+<meta name="description" content="网络流是什么是网络流是一种类比水流的解决问题方法，与线性规划密切相关。虽然模型简单，但是应用却十分广泛。  Dinic算法Dinic算法是一种对于网络流问题的增广路算法，它通过对残量网络进行分层，并在层次图上寻找增广路的方式，实现了在$O(n^2m)$的时间内求出网络的最大流。在加入多路增广和当前弧优化后，复杂度远小于理论上界。">
 <meta name="keywords" content="笔记,OI,网络流">
 <meta property="og:type" content="article">
 <meta property="og:title" content="网络流笔记">
 <meta property="og:url" content="http://ljzves.github.io/2017/05/22/最大流笔记/index.html">
 <meta property="og:site_name" content="Leaves&#39;s Blog">
-<meta property="og:description" content="最大流算法 dinic详细的分析及算法流程，请参考《算法导论》。 代码1234567891011121314151617181920212223242526272829303132333435363738394041class Dinic &amp;#123; public:  int operator() (int s, int t, int n) &amp;#123;    int max_flow = 0;">
-<meta property="og:updated_time" content="2017-05-23T11:57:21.000Z">
+<meta property="og:description" content="网络流是什么是网络流是一种类比水流的解决问题方法，与线性规划密切相关。虽然模型简单，但是应用却十分广泛。  Dinic算法Dinic算法是一种对于网络流问题的增广路算法，它通过对残量网络进行分层，并在层次图上寻找增广路的方式，实现了在$O(n^2m)$的时间内求出网络的最大流。在加入多路增广和当前弧优化后，复杂度远小于理论上界。">
+<meta property="og:updated_time" content="2017-05-24T12:54:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络流笔记">
-<meta name="twitter:description" content="最大流算法 dinic详细的分析及算法流程，请参考《算法导论》。 代码1234567891011121314151617181920212223242526272829303132333435363738394041class Dinic &amp;#123; public:  int operator() (int s, int t, int n) &amp;#123;    int max_flow = 0;">
+<meta name="twitter:description" content="网络流是什么是网络流是一种类比水流的解决问题方法，与线性规划密切相关。虽然模型简单，但是应用却十分广泛。  Dinic算法Dinic算法是一种对于网络流问题的增广路算法，它通过对残量网络进行分层，并在层次图上寻找增广路的方式，实现了在$O(n^2m)$的时间内求出网络的最大流。在加入多路增广和当前弧优化后，复杂度远小于理论上界。">
 
 
 
@@ -328,8 +328,24 @@
       
 
       
-        <h1 id="最大流算法-dinic"><a href="#最大流算法-dinic" class="headerlink" title="最大流算法 dinic"></a>最大流算法 dinic</h1><p>详细的分析及算法流程，请参考《算法导论》。</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dinic</span> &#123;</span></div><div class="line"> <span class="keyword">public</span>:</div><div class="line">  <span class="function"><span class="keyword">int</span> <span class="title">operator</span><span class="params">()</span> <span class="params">(<span class="keyword">int</span> s, <span class="keyword">int</span> t, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> max_flow = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span> (bfs(&amp;no[s], &amp;no[t], n)) &#123;</div><div class="line">      max_flow += dfs(&amp;no[s], &amp;no[t]);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> max_flow;</div><div class="line">  &#125;</div><div class="line"> <span class="keyword">private</span>:</div><div class="line">  <span class="function"><span class="keyword">bool</span> <span class="title">bfs</span><span class="params">(Node *s, Node *t, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</div><div class="line">      no[i].level = <span class="number">-1</span>; no[i].curr = no[i].fir;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">queue</span>&lt;Node *&gt; q; s-&gt;level = <span class="number">1</span>; q.push(s);</div><div class="line">    <span class="keyword">while</span> (!q.empty()) &#123;</div><div class="line">      Node *v = q.front(); q.pop();</div><div class="line">      <span class="keyword">for</span> (Edge *e = v-&gt;fir; e; e = e-&gt;next) &#123;</div><div class="line">        <span class="keyword">if</span> (e-&gt;flow != <span class="number">0</span> &amp;&amp; e-&gt;to-&gt;level == <span class="number">-1</span>) &#123;</div><div class="line">          e-&gt;to-&gt;level = v-&gt;level+<span class="number">1</span>;</div><div class="line">          <span class="keyword">if</span> (e-&gt;to == t) <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">          q.push(e-&gt;to);</div><div class="line">        &#125; </div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(Node *s, Node *t, <span class="keyword">int</span> limit = oo)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (s == t) <span class="keyword">return</span> limit;</div><div class="line">    <span class="keyword">int</span> cnt_flow = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span> (Edge *&amp;e = s-&gt;curr; e; e = e-&gt;next) &#123;</div><div class="line">      <span class="keyword">if</span> (e-&gt;flow != <span class="number">0</span> &amp;&amp; e-&gt;to-&gt;level == s-&gt;level+<span class="number">1</span>) &#123;</div><div class="line">        <span class="keyword">int</span> flow = dfs(e-&gt;to, t, <span class="built_in">std</span>::min(limit-cnt_flow, e-&gt;flow));</div><div class="line">        cnt_flow += flow; e-&gt;flow -= flow; e-&gt;res-&gt;flow += flow;</div><div class="line">        <span class="keyword">if</span> (cnt_flow == limit) <span class="keyword">return</span> cnt_flow;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (cnt_flow != limit) s-&gt;level = <span class="number">-1</span>;</div><div class="line">    <span class="keyword">return</span> cnt_flow;</div><div class="line">  &#125;</div><div class="line">&#125;dinic;</div></pre></td></tr></table></figure>
+        <h1 id="网络流是什么"><a href="#网络流是什么" class="headerlink" title="网络流是什么"></a>网络流是什么</h1><p>是网络流是一种类比水流的解决问题方法，与线性规划密切相关。虽然模型简单，但是应用却十分广泛。</p>
+<hr>
+<h1 id="Dinic算法"><a href="#Dinic算法" class="headerlink" title="Dinic算法"></a>Dinic算法</h1><p>Dinic算法是一种对于网络流问题的增广路算法，它通过对残量网络进行分层，并在层次图上寻找增广路的方式，实现了在$O(n^2m)$的时间内求出网络的最大流。在加入<strong>多路增广</strong>和<strong>当前弧</strong>优化后，复杂度远小于理论上界。<a id="more"></a></p>
+<h2 id="变量解释"><a href="#变量解释" class="headerlink" title="变量解释"></a>变量解释</h2><p>$no[x]$是点$x$的指针</p>
+<ul>
+<li>$level$：表示层数</li>
+<li>$fir$：表示邻接表中的第一条边</li>
+<li>$curr$：<strong>当前弧优化</strong>，表示目前访问到的边</li>
+</ul>
+<p>$Edge*$ 是边指针</p>
+<ul>
+<li>$next$：表示下一条边 </li>
+<li>$to$：表示指向节点</li>
+<li>$res$：表示反向边</li>
+</ul>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dinic</span> &#123;</span></div><div class="line"> <span class="keyword">public</span>:</div><div class="line">  <span class="function"><span class="keyword">int</span> <span class="title">operator</span><span class="params">()</span> <span class="params">(<span class="keyword">int</span> s, <span class="keyword">int</span> t, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> max_flow = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span> (bfs(&amp;no[s], &amp;no[t], n)) &#123;</div><div class="line">      max_flow += dfs(&amp;no[s], &amp;no[t]);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> max_flow;</div><div class="line">  &#125;</div><div class="line"> <span class="keyword">private</span>:</div><div class="line">  <span class="comment">// 建立层次网络</span></div><div class="line">  <span class="function"><span class="keyword">bool</span> <span class="title">bfs</span><span class="params">(Node *s, Node *t, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</div><div class="line">      no[i].level = <span class="number">-1</span>; no[i].curr = no[i].fir;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">queue</span>&lt;Node *&gt; q; s-&gt;level = <span class="number">1</span>; q.push(s);</div><div class="line">    <span class="keyword">while</span> (!q.empty()) &#123;</div><div class="line">      Node *v = q.front(); q.pop();</div><div class="line">      <span class="keyword">for</span> (Edge *e = v-&gt;fir; e; e = e-&gt;next) &#123;</div><div class="line">        <span class="keyword">if</span> (e-&gt;flow != <span class="number">0</span> &amp;&amp; e-&gt;to-&gt;level == <span class="number">-1</span>) &#123;</div><div class="line">          e-&gt;to-&gt;level = v-&gt;level+<span class="number">1</span>;</div><div class="line">          <span class="keyword">if</span> (e-&gt;to == t) <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">          q.push(e-&gt;to);</div><div class="line">        &#125; </div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="comment">// 寻找增广路</span></div><div class="line">  <span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(Node *s, Node *t, <span class="keyword">int</span> limit = oo)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (s == t) <span class="keyword">return</span> limit;</div><div class="line">    <span class="keyword">int</span> cnt_flow = <span class="number">0</span>;</div><div class="line">    <span class="comment">// cnt_flow 记录已使用的流量，以达到多路增广的效果</span></div><div class="line">    <span class="keyword">for</span> (Edge *&amp;e = s-&gt;curr; e; e = e-&gt;next) &#123;</div><div class="line">      <span class="comment">// 注意 *&amp;e 这样才能起到当前弧优化的效果</span></div><div class="line">      <span class="keyword">if</span> (e-&gt;flow != <span class="number">0</span> &amp;&amp; e-&gt;to-&gt;level == s-&gt;level+<span class="number">1</span>) &#123;</div><div class="line">        <span class="keyword">int</span> flow = dfs(e-&gt;to, t, <span class="built_in">std</span>::min(limit-cnt_flow, e-&gt;flow));</div><div class="line">        cnt_flow += flow; e-&gt;flow -= flow; e-&gt;res-&gt;flow += flow;</div><div class="line">        <span class="keyword">if</span> (cnt_flow == limit) <span class="keyword">return</span> cnt_flow;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (cnt_flow != limit) s-&gt;level = <span class="number">-1</span>;</div><div class="line">    <span class="comment">// 这是个小优化，至于为什么留给读者自己思考。</span></div><div class="line">    <span class="keyword">return</span> cnt_flow;</div><div class="line">  &#125;</div><div class="line">&#125;dinic;</div></pre></td></tr></table></figure>
+<h2 id="模板题地址"><a href="#模板题地址" class="headerlink" title="模板题地址"></a>模板题地址</h2><p><a href="https://ly.men.ci/problem/159" target="_blank" rel="external">LYOI</a></p>
+<hr>
 <h1 id="重要结论及模型"><a href="#重要结论及模型" class="headerlink" title="重要结论及模型"></a>重要结论及模型</h1><p> 记 $ S $ 为源点，$T$为汇点，$c(u,v)$为在点u,v之间的容量。</p>
 <h2 id="最大流最小割定理"><a href="#最大流最小割定理" class="headerlink" title="最大流最小割定理"></a>最大流最小割定理</h2><blockquote>
 <p>最大流等于最小割</p>
@@ -351,8 +367,8 @@ ans=\Sigma w_i[w_i>0]-maxflow;</script><h3 id="模型理解-1"><a href="#模型�
 <h3 id="方案输出-1"><a href="#方案输出-1" class="headerlink" title="方案输出"></a>方案输出</h3><p>最小割即为方案</p>
 <h2 id="最小路径覆盖"><a href="#最小路径覆盖" class="headerlink" title="最小路径覆盖"></a>最小路径覆盖</h2><h3 id="构图-2"><a href="#构图-2" class="headerlink" title="构图"></a>构图</h3><blockquote>
 <p>将一个点拆成两个点一个表示入，一个表示出，答案就是最大匹配。</p>
-<h2 id="上下界网络流"><a href="#上下界网络流" class="headerlink" title="上下界网络流"></a>上下界网络流</h2><p>推荐阅读<a href="https://oi.men.ci/network-flow-with-bounds/" target="_blank" rel="external">Menci的blog</a>。很详细，对四种情况都进行了讨论。</p>
 </blockquote>
+<h2 id="上下界网络流"><a href="#上下界网络流" class="headerlink" title="上下界网络流"></a>上下界网络流</h2><p>推荐阅读<a href="https://oi.men.ci/network-flow-with-bounds/" target="_blank" rel="external">Menci的blog</a>。很详细，对四种情况都进行了讨论。</p>
 
       
     </div>
@@ -368,7 +384,7 @@ ans=\Sigma w_i[w_i>0]-maxflow;</script><h3 id="模型理解-1"><a href="#模型�
       
         
   <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-    <div>~欢迎投食~</div>
+    <div>~感谢投食~</div>
     <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
       <span>赏</span>
     </button>
@@ -525,32 +541,26 @@ ans=\Sigma w_i[w_i>0]-maxflow;</script><h3 id="模型理解-1"><a href="#模型�
 
         <div class="links-of-author motion-element">
           
-            
-              <span class="links-of-author-item">
-                <a href="https://www.zhihu.com/people/leaves-22" target="_blank" title="知乎">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  知乎
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=821177717&website=www.oicqzone.com" target="_blank" title="QQ">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  QQ
-                </a>
-              </span>
-            
-          
         </div>
 
         
         
 
         
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              ~友链~
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://oi.men.ci/" title="Menci" target="_blank">Menci</a>
+                </li>
+              
+            </ul>
+          </div>
         
 
         
@@ -568,7 +578,7 @@ ans=\Sigma w_i[w_i>0]-maxflow;</script><h3 id="模型理解-1"><a href="#模型�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#最大流算法-dinic"><span class="nav-number">1.</span> <span class="nav-text">最大流算法 dinic</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">1.1.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#重要结论及模型"><span class="nav-number">2.</span> <span class="nav-text">重要结论及模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#最大流最小割定理"><span class="nav-number">2.1.</span> <span class="nav-text">最大流最小割定理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二分图最大匹配"><span class="nav-number">2.2.</span> <span class="nav-text">二分图最大匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构图"><span class="nav-number">2.2.1.</span> <span class="nav-text">构图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型理解"><span class="nav-number">2.2.2.</span> <span class="nav-text">模型理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案输出"><span class="nav-number">2.2.3.</span> <span class="nav-text">方案输出</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最大权闭合子图"><span class="nav-number">2.3.</span> <span class="nav-text">最大权闭合子图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构图-1"><span class="nav-number">2.3.1.</span> <span class="nav-text">构图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型理解-1"><span class="nav-number">2.3.2.</span> <span class="nav-text">模型理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案输出-1"><span class="nav-number">2.3.3.</span> <span class="nav-text">方案输出</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最小路径覆盖"><span class="nav-number">2.4.</span> <span class="nav-text">最小路径覆盖</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构图-2"><span class="nav-number">2.4.1.</span> <span class="nav-text">构图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上下界网络流"><span class="nav-number">2.5.</span> <span class="nav-text">上下界网络流</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#网络流是什么"><span class="nav-number">1.</span> <span class="nav-text">网络流是什么</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Dinic算法"><span class="nav-number">2.</span> <span class="nav-text">Dinic算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量解释"><span class="nav-number">2.1.</span> <span class="nav-text">变量解释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">2.2.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模板题地址"><span class="nav-number">2.3.</span> <span class="nav-text">模板题地址</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#重要结论及模型"><span class="nav-number">3.</span> <span class="nav-text">重要结论及模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#最大流最小割定理"><span class="nav-number">3.1.</span> <span class="nav-text">最大流最小割定理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二分图最大匹配"><span class="nav-number">3.2.</span> <span class="nav-text">二分图最大匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构图"><span class="nav-number">3.2.1.</span> <span class="nav-text">构图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型理解"><span class="nav-number">3.2.2.</span> <span class="nav-text">模型理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案输出"><span class="nav-number">3.2.3.</span> <span class="nav-text">方案输出</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最大权闭合子图"><span class="nav-number">3.3.</span> <span class="nav-text">最大权闭合子图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构图-1"><span class="nav-number">3.3.1.</span> <span class="nav-text">构图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型理解-1"><span class="nav-number">3.3.2.</span> <span class="nav-text">模型理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案输出-1"><span class="nav-number">3.3.3.</span> <span class="nav-text">方案输出</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最小路径覆盖"><span class="nav-number">3.4.</span> <span class="nav-text">最小路径覆盖</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构图-2"><span class="nav-number">3.4.1.</span> <span class="nav-text">构图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上下界网络流"><span class="nav-number">3.5.</span> <span class="nav-text">上下界网络流</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -602,6 +612,7 @@ ans=\Sigma w_i[w_i>0]-maxflow;</script><h3 id="模型理解-1"><a href="#模型�
 <div class="powered-by">
   由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
+
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
