@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[后缀数组学习笔记]]></title>
+    <url>%2F2017%2F05%2F22%2F%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84%2F</url>
+    <content type="text"><![CDATA[定义字符串$s$的起始位置为1长度为$len$，$s[i]$表示字符串第$i$位的字符。后缀：用$suff[i]$表示由$s[i]~s[len]$组成的字符串。]]></content>
+      <tags>
+        <tag>笔记</tag>
+        <tag>OI</tag>
+        <tag>后缀数组</tag>
+        <tag>字符串</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[网络流笔记]]></title>
     <url>%2F2017%2F05%2F22%2F%E6%9C%80%E5%A4%A7%E6%B5%81%E7%AC%94%E8%AE%B0%2F</url>
     <content type="text"><![CDATA[网络流是什么是网络流是一种类比水流的解决问题方法，与线性规划密切相关。虽然模型简单，但是应用却十分广泛。 Dinic算法Dinic算法是一种对于网络流问题的增广路算法，它通过对残量网络进行分层，并在层次图上寻找增广路的方式，实现了在$O(n^2m)$的时间内求出网络的最大流。在加入多路增广和当前弧优化后，复杂度远小于理论上界。 变量解释$no[x]$是点$x$的指针 $level$：表示层数 $fir$：表示邻接表中的第一条边 $curr$：当前弧优化，表示目前访问到的边 $Edge*$ 是边指针 $next$：表示下一条边 $to$：表示指向节点 $res$：表示反向边 代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546class Dinic &#123; public: int operator() (int s, int t, int n) &#123; int max_flow = 0; while (bfs(&amp;no[s], &amp;no[t], n)) &#123; max_flow += dfs(&amp;no[s], &amp;no[t]); &#125; return max_flow; &#125; private: // 建立层次网络 bool bfs(Node *s, Node *t, int n) &#123; for (int i = 1; i &lt;= n; ++i) &#123; no[i].level = -1; no[i].curr = no[i].fir; &#125; std::queue&lt;Node *&gt; q; s-&gt;level = 1; q.push(s); while (!q.empty()) &#123; Node *v = q.front(); q.pop(); for (Edge *e = v-&gt;fir; e; e = e-&gt;next) &#123; if (e-&gt;flow != 0 &amp;&amp; e-&gt;to-&gt;level == -1) &#123; e-&gt;to-&gt;level = v-&gt;level+1; if (e-&gt;to == t) return true; q.push(e-&gt;to); &#125; &#125; &#125; return false; &#125; // 寻找增广路 int dfs(Node *s, Node *t, int limit = oo) &#123; if (s == t) return limit; int cnt_flow = 0; // cnt_flow 记录已使用的流量，以达到多路增广的效果 for (Edge *&amp;e = s-&gt;curr; e; e = e-&gt;next) &#123; // 注意 *&amp;e 这样才能起到当前弧优化的效果 if (e-&gt;flow != 0 &amp;&amp; e-&gt;to-&gt;level == s-&gt;level+1) &#123; int flow = dfs(e-&gt;to, t, std::min(limit-cnt_flow, e-&gt;flow)); cnt_flow += flow; e-&gt;flow -= flow; e-&gt;res-&gt;flow += flow; if (cnt_flow == limit) return cnt_flow; &#125; &#125; if (cnt_flow != limit) s-&gt;level = -1; // 这是个小优化，至于为什么留给读者自己思考。 return cnt_flow; &#125;&#125;dinic; 模板题地址LYOI 重要结论及模型 记 $ S $ 为源点，$T$为汇点，$c(u,v)$为在点u,v之间的容量。 最大流最小割定理 最大流等于最小割 详细证明请参考《最小割模型在信息学竞赛中的应用》hbt hbt. 胡伯涛 2007年国家集训队论文《最小割模型在信息学竞赛中的应用》 &#8617; 二分图最大匹配构图设二分图\(G=(V_1,V_2,E)\)$\begin{cases}c(s,u) = 1,&amp;u\in V_1\c(u,v)=1,&amp;\langle u,v\rangle\in E\c(v,t)=1,&amp;v\in V_2\end{cases}$答案就是最大流 模型理解这个模型比较好理解，因为每个点的流量至多为1，保证了每个点只能用一次。 方案输出遍历第二部分的边，如果满流则就是一对匹配。 最大权闭合子图构图 \begin{cases} c(u,v)=\infty,&\langle u,v\rangle\in E\\ c(s,u)=w_u,&w_u>0\\ c(u,t)=-w_u,&w_u0]-maxflow;模型理解证明比较复杂，详细证明请参考hbt。 方案输出最小割即为方案 最小路径覆盖构图 将一个点拆成两个点一个表示入，一个表示出，答案就是最大匹配。 上下界网络流推荐阅读Menci的blog。很详细，对四种情况都进行了讨论。]]></content>
