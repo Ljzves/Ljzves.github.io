@@ -95,7 +95,7 @@
 <meta property="og:url" content="http://www.leaves.wiki/2017/06/19/线性规划/index.html">
 <meta property="og:site_name" content="Leaves&#39;s Blog">
 <meta property="og:description" content="线性规划综述 一般线性规划在一般线性规划问题中，我们希望优化一个满足一组线性不等式约束的线性函数。已知一组实数$a_1,a_2,\cdots,a_n$和一组变量$x_1,x_2,\cdots,x_n$。我们定义在这些变量上的一个线性函数 $f$： f(x_1,x_2,\cdots,x_n)=a_1x_1+a_2x_2+\cdots+a_nx_n=\sum_{j=1}^{n}a_jx_j不等式 f(">
-<meta property="og:updated_time" content="2017-06-25T14:24:22.000Z">
+<meta property="og:updated_time" content="2017-06-25T22:39:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线性规划学习笔记">
 <meta name="twitter:description" content="线性规划综述 一般线性规划在一般线性规划问题中，我们希望优化一个满足一组线性不等式约束的线性函数。已知一组实数$a_1,a_2,\cdots,a_n$和一组变量$x_1,x_2,\cdots,x_n$。我们定义在这些变量上的一个线性函数 $f$： f(x_1,x_2,\cdots,x_n)=a_1x_1+a_2x_2+\cdots+a_nx_n=\sum_{j=1}^{n}a_jx_j不等式 f(">
@@ -349,16 +349,6 @@
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a class="cloud-tie-join-count" href="/2017/06/19/线性规划/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -395,13 +385,16 @@ x_1,\;x_2\quad&\ge\;0
 <h2 id="单纯型算法"><a href="#单纯型算法" class="headerlink" title="单纯型算法"></a>单纯型算法</h2><p>学过中学线性规划的同学都知道：</p>
 <ol>
 <li>线性规划的最优解是在可行区域的一个顶点上。</li>
-<li>如果一个顶点所代表的值比与他相邻的所有顶点的值优，该顶点即为最优解。【局部最优即为全局最优】<br>这样的结论在超过两个变量的线性规划中也成立。<br><strong>单纯性算法</strong>就是一个一直沿着单纯型的一条边从当前顶点移动到一个目标值不小于当前顶点的相邻顶点的算法。<h1 id="标准型"><a href="#标准型" class="headerlink" title="标准型"></a>标准型</h1></li>
+<li>如果一个顶点所代表的值比与他相邻的所有顶点的值优，该顶点即为最优解。【局部最优即为全局最优】</li>
 </ol>
-<hr>
+<p>这样的结论在超过两个变量的线性规划中也成立。<strong>单纯性算法</strong>就是一个一直沿着单纯型的一条边从当前顶点移动到一个目标值不小于当前顶点的相邻顶点的算法。</p>
+<h1 id="标准型"><a href="#标准型" class="headerlink" title="标准型"></a>标准型</h1><hr>
 <h1 id="松弛型"><a href="#松弛型" class="headerlink" title="松弛型"></a>松弛型</h1><hr>
 <h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><hr>
 <p><a href="http://uoj.ac/problem/179" target="_blank" rel="external">模板题链接</a></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">LinearProgramming</span> &#123;</span></div><div class="line"> <span class="keyword">public</span>:</div><div class="line">  LinearProgramming(<span class="keyword">int</span> n, <span class="keyword">int</span> m) : n_(n), m_(m) &#123;</div><div class="line">    <span class="keyword">int</span> k;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;k = read(); a_[<span class="number">0</span>][i] = k;&#125;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i) &#123;</div><div class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; ++j) &#123;k = read();  a_[i][j] = k;&#125;</div><div class="line">      k = read(); a_[i][<span class="number">0</span>] = k;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">simplex</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n_; ++i) nonbasic_vars_[i] = i;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m_; ++i) basic_vars_[i] = i+n_;</div><div class="line">    <span class="keyword">int</span> x, y;</div><div class="line">    <span class="keyword">while</span> (<span class="number">1</span>) &#123;</div><div class="line">      x = y = <span class="number">0</span>;</div><div class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m_; ++i)</div><div class="line">        <span class="keyword">if</span> (a_[i][<span class="number">0</span>] &lt; -kEps) &#123;y = i; <span class="keyword">break</span>;&#125;</div><div class="line">      <span class="keyword">if</span> (!y) <span class="keyword">break</span>;</div><div class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n_; ++i)</div><div class="line">        <span class="keyword">if</span> (a_[y][i] &lt; -kEps) &#123;x = i; <span class="keyword">if</span> (rand()%<span class="number">3</span> == <span class="number">0</span>) <span class="keyword">break</span>;&#125;</div><div class="line">      <span class="keyword">if</span> (!x) &#123;<span class="built_in">puts</span>(<span class="string">"Infeasible"</span>); <span class="keyword">return</span>;&#125;</div><div class="line">      pivot(x, y);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">while</span> (<span class="number">1</span>) &#123;</div><div class="line">      x = <span class="number">0</span>; <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n_; ++i) <span class="keyword">if</span> (a_[<span class="number">0</span>][i] &gt; kEps) &#123;x = i; <span class="keyword">break</span>;&#125;</div><div class="line">      <span class="keyword">if</span> (!x) <span class="keyword">break</span>;</div><div class="line">      <span class="keyword">double</span> k = kInf;</div><div class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m_; ++i)</div><div class="line">        <span class="keyword">if</span> (a_[i][x] &gt; kEps &amp;&amp; a_[i][<span class="number">0</span>]/a_[i][x] &lt; k) &#123;</div><div class="line">          y = i; k = a_[i][<span class="number">0</span>]/a_[i][x];</div><div class="line">        &#125;</div><div class="line">      <span class="keyword">if</span> (k == kInf) &#123;<span class="built_in">puts</span>(<span class="string">"Unbounded"</span>); <span class="keyword">return</span>;&#125;</div><div class="line">      pivot(x, y);</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%.8lf\n"</span>, -a_[<span class="number">0</span>][<span class="number">0</span>]);</div><div class="line">    <span class="keyword">if</span> (!type) <span class="keyword">return</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n_; ++i) a_[<span class="number">0</span>][i] = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m_; ++i)</div><div class="line">      <span class="keyword">if</span> (basic_vars_[i] &lt;= n_)</div><div class="line">        a_[<span class="number">0</span>][basic_vars_[i]] = a_[i][<span class="number">0</span>];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n_; ++i) <span class="built_in">printf</span>(<span class="string">"%.8lf "</span>, a_[<span class="number">0</span>][i]);</div><div class="line">  &#125;</div><div class="line"></div><div class="line"> <span class="keyword">private</span>:</div><div class="line">  <span class="keyword">int</span> n_, m_, basic_vars_[kM], nonbasic_vars_[kN];</div><div class="line">  <span class="keyword">double</span> a_[kM][kN];</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">pivot</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n_; ++i)</div><div class="line">      <span class="keyword">if</span> (i != x) a_[y][i] /= a_[y][x];</div><div class="line">    a_[y][x] = <span class="number">1</span>/a_[y][x];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= m_; ++i) &#123;</div><div class="line">      <span class="keyword">if</span> (i == y) <span class="keyword">continue</span>;</div><div class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= n_; ++j)</div><div class="line">        <span class="keyword">if</span> (j != x) a_[i][j] -= a_[i][x]*a_[y][j];</div><div class="line">      a_[i][x] *= -a_[y][x];</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">std</span>::swap(nonbasic_vars_[x], basic_vars_[y]);</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<div class="note primary"><p><strong>版权声明</strong>： 本博客所有文章除特别声明外，均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="external">CC BY-NC-SA 4.0 许可协议</a>。转载请注明出处！ </p>
+</div>
 
       
     </div>
@@ -509,7 +502,7 @@ x_1,\;x_2\quad&\ge\;0
           
   <div class="comments" id="comments">
     
-      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTIxOC81Nzg1"></div>
     
   </div>
 
@@ -800,21 +793,29 @@ x_1,\;x_2\quad&\ge\;0
 
 
   
-    
-    <script>
-      var cloudTieConfig = {
-        url: document.location.href, 
-        sourceId: "",
-        productKey: "45754ba361a04172891993498f2262dc",
-        target: "cloud-tie-wrapper"
-      };
-    </script>
-    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+
+
+
+
+
   
 
 
 
 
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
 
 
 
