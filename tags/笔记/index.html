@@ -9,7 +9,20 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
-
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
 
 
 
@@ -100,20 +113,6 @@
 
 
 
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
@@ -350,9 +349,9 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2017/05/22/后缀数组/" itemprop="url">
+            <a class="post-title-link" href="/2017/05/22/最大流笔记/" itemprop="url">
               
-                <span itemprop="name">后缀数组学习笔记</span>
+                <span itemprop="name">网络流笔记</span>
               
             </a>
         
@@ -378,9 +377,9 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2017/05/22/最大流笔记/" itemprop="url">
+            <a class="post-title-link" href="/2017/05/22/后缀数组/" itemprop="url">
               
-                <span itemprop="name">网络流笔记</span>
+                <span itemprop="name">后缀数组学习笔记</span>
               
             </a>
         
