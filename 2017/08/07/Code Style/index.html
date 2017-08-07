@@ -88,17 +88,17 @@
 
 
 
-<meta name="description" content="本文介绍Leaves遵循的代码规范。  版权声明： 本博客所有文章除特别声明外，均采用CC BY-NC-SA 4.0 许可协议。转载请注明出处！">
+<meta name="description" content="本文介绍Leaves遵循的代码规范。这是一种基于Google Code Style的代码规范。">
 <meta name="keywords" content="OI,公告">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Leaves&#39;s Code Style for OI">
 <meta property="og:url" content="http://www.leaves.wiki/2017/08/07/Code Style/index.html">
 <meta property="og:site_name" content="Leaves&#39;s Blog">
-<meta property="og:description" content="本文介绍Leaves遵循的代码规范。  版权声明： 本博客所有文章除特别声明外，均采用CC BY-NC-SA 4.0 许可协议。转载请注明出处！">
-<meta property="og:updated_time" content="2017-08-07T07:20:20.000Z">
+<meta property="og:description" content="本文介绍Leaves遵循的代码规范。这是一种基于Google Code Style的代码规范。">
+<meta property="og:updated_time" content="2017-08-07T10:39:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leaves&#39;s Code Style for OI">
-<meta name="twitter:description" content="本文介绍Leaves遵循的代码规范。  版权声明： 本博客所有文章除特别声明外，均采用CC BY-NC-SA 4.0 许可协议。转载请注明出处！">
+<meta name="twitter:description" content="本文介绍Leaves遵循的代码规范。这是一种基于Google Code Style的代码规范。">
 
 
 
@@ -370,8 +370,54 @@
       
 
       
-        <blockquote class="blockquote-center"><p>本文介绍Leaves遵循的代码规范。</p>
+        <blockquote class="blockquote-center"><p>本文介绍Leaves遵循的代码规范。这是一种基于<a href="http://zh-google-styleguide.readthedocs.io/en/latest/" target="_blank" rel="external">Google Code Style</a>的代码规范。</p>
 </blockquote>
+<a id="more"></a>
+<h1 id="1-命名约定"><a href="#1-命名约定" class="headerlink" title="1.命名约定"></a>1.命名约定</h1><h2 id="1-1-通用命名规则"><a href="#1-1-通用命名规则" class="headerlink" title="1.1 通用命名规则"></a>1.1 通用命名规则</h2><p>尽可能少用缩写，要有描述性。除非是一些广为人知的缩写。</p>
+<h2 id="1-2-文件命名"><a href="#1-2-文件命名" class="headerlink" title="1.2 文件命名"></a>1.2 文件命名</h2><p>文件名要全部小写, 可以包含下划线 (_)。</p>
+<h2 id="1-3-类型命名"><a href="#1-3-类型命名" class="headerlink" title="1.3 类型命名"></a>1.3 类型命名</h2><p>类, 结构体, 类型定义 (typedef), 枚举, 类型模板参数名称的每个单词首字母均大写, 不包含下划线。</p>
+<h2 id="1-4-变量命名"><a href="#1-4-变量命名" class="headerlink" title="1.4 变量命名"></a>1.4 变量命名</h2><p>变量 (包括函数参数) 和数据成员名一律小写, 单词之间用下划线连接. 类的成员变量以下划线结尾, 但结构体的就不用, 如: a<em>local_variable, a_struct_data_member, a_class_data_member</em>.</p>
+<h2 id="1-5-常量命名"><a href="#1-5-常量命名" class="headerlink" title="1.5 常量命名"></a>1.5 常量命名</h2><p>命名时以 “k” 开头，大小写混合。</p>
+<h2 id="1-6-函数命名"><a href="#1-6-函数命名" class="headerlink" title="1.6 函数命名"></a>1.6 函数命名</h2><p>常规函数使用大小写混合， 取值和设值函数则要求与变量名匹配。</p>
+<hr>
+<h1 id="2-类"><a href="#2-类" class="headerlink" title="2.类"></a>2.类</h1><h2 id="2-1-类和结构体"><a href="#2-1-类和结构体" class="headerlink" title="2.1 类和结构体"></a>2.1 类和结构体</h2><p>struct仅包含成员变量、构造函数、析构函数，其它一概使用 class。为了和 STL 保持一致，对于仿函数等特性可以使用struct。</p>
+<h2 id="2-2-运算符重载"><a href="#2-2-运算符重载" class="headerlink" title="2.2 运算符重载"></a>2.2 运算符重载</h2><p>尽可能不要重载运算符。 禁止创建用户定义字面量。</p>
+<h2 id="2-3-声明顺序"><a href="#2-3-声明顺序" class="headerlink" title="2.3 声明顺序"></a>2.3 声明顺序</h2><p>类定义一般应以 public: 开始, 后跟 private:<br>在每一部分中，按如下顺序申明：构造函数，析构函数，重载运算符，其它函数，成员变量。</p>
+<hr>
+<h1 id="3-格式"><a href="#3-格式" class="headerlink" title="3.格式"></a>3.格式</h1><p>大括号换行不换行均可，因为本人大括号换行，下面的例子大括号均换行。</p>
+<h2 id="3-1-行长度"><a href="#3-1-行长度" class="headerlink" title="3.1 行长度"></a>3.1 行长度</h2><p>每一行代码字符数不超过80。</p>
+<h2 id="3-2-缩进"><a href="#3-2-缩进" class="headerlink" title="3.2 缩进"></a>3.2 缩进</h2><p>把Tab改成两格空格缩进。</p>
+<h2 id="3-3-函数的声明定义调用"><a href="#3-3-函数的声明定义调用" class="headerlink" title="3.3 函数的声明定义调用"></a>3.3 函数的声明定义调用</h2><p>返回类型和函数名在同一行, 参数也尽量放在同一行, 如果放不下就对形参分行。<br><strong>说明：</strong><br>参数不换行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ReturnType ClassName::FunctionName(Type par_name1, Type par_name2) &#123;</div><div class="line">  DoSomething();</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>参数换行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ReturnType ClassName::FunctionName(Type par_name1, Type par_name2,</div><div class="line">                                   Type par_name3) &#123;</div><div class="line">  DoSomething();</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>参数换行’：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">ReturnType LongClassName::ReallyReallyReallyLongFunctionName(</div><div class="line">    Type par_name1,  // 4 space indent</div><div class="line">    Type par_name2,</div><div class="line">    Type par_name3) &#123;</div><div class="line">  DoSomething();  // 2 space indent</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="3-4-IF语句"><a href="#3-4-IF语句" class="headerlink" title="3.4 IF语句"></a>3.4 IF语句</h2><ul>
+<li>倾向于不在圆括号内使用空格。 关键字 if 和 else 另起一行。</li>
+<li>if 和左圆括号间都有空格。右圆括号和左大括号之间有空格。</li>
+<li>当且仅当语句简单并且没有使用 else 子句时，可以将代码写在一行。</li>
+<li>单行语句不需要使用大括号，如果你喜欢用也没问题。</li>
+<li>语句中某个 if-else 分支使用了大括号的话，其它分支也必须使用。</li>
+</ul>
+<p>允许的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">if (condition) &#123;  </div><div class="line">  ...  // 2 空格缩进.</div><div class="line">&#125; else if (...) &#123;  </div><div class="line">  ...</div><div class="line">&#125; else &#123;</div><div class="line">  ...</div><div class="line">&#125;</div><div class="line">if (x == kFoo) return new Foo();</div><div class="line">if (condition) &#123;</div><div class="line">  foo;</div><div class="line">&#125; else &#123;</div><div class="line">  bar;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>不允许的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">if (condition)&#123; // 缺少空格</div><div class="line">if (x) DoThis(); // 有else但是没有换行</div><div class="line">else DoThat();</div><div class="line">if (condition) // else有大括号但是if没有</div><div class="line">  foo;</div><div class="line">else &#123;</div><div class="line">  bar;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="3-5-选择语句"><a href="#3-5-选择语句" class="headerlink" title="3.5 选择语句"></a>3.5 选择语句</h2><p>格式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">switch (var) &#123;</div><div class="line">  case 0: &#123;  // 2 空格缩进</div><div class="line">    ...      // 4 空格缩进</div><div class="line">    break;</div><div class="line">  &#125;</div><div class="line">  case 1: &#123;</div><div class="line">    ...</div><div class="line">    break;</div><div class="line">  &#125;</div><div class="line">  default: &#123;</div><div class="line">    assert(false);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="3-6-循环语句"><a href="#3-6-循环语句" class="headerlink" title="3.6 循环语句"></a>3.6 循环语句</h2><ul>
+<li>在单语句循环里，括号可用可不用。</li>
+<li>空循环体应使用 {} 或 continue，而不是一个简单的分号。</li>
+</ul>
+<h2 id="3-7-指针和引用表达式"><a href="#3-7-指针和引用表达式" class="headerlink" title="3.7 指针和引用表达式"></a>3.7 指针和引用表达式</h2><p>点或箭头前后不要有空格。指针/地址操作符 (*, &amp;) 之后不能有空格。</p>
+<h2 id="3-8-布尔表达式"><a href="#3-8-布尔表达式" class="headerlink" title="3.8 布尔表达式"></a>3.8 布尔表达式</h2><ul>
+<li>如果一个布尔表达式超过 标准行宽，需要断行。</li>
+<li>逻辑与 (&amp;&amp;) 操作符总位于行尾。</li>
+<li>直接用符号形式的操作符，如 &amp;&amp; 和 ~，不要用词语形式的 and 和 compl。</li>
+</ul>
+<h2 id="3-9-函数返回值"><a href="#3-9-函数返回值" class="headerlink" title="3.9 函数返回值"></a>3.9 函数返回值</h2><p>不要在 return 表达式里加上非必须的圆括号.</p>
+<h2 id="3-10-类格式"><a href="#3-10-类格式" class="headerlink" title="3.10 类格式"></a>3.10 类格式</h2><p>依次申明 public:, private:<br>每个关键词都缩进 1 个空格。关键词前空一行。<br><strong>栗子：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">class MyClass &#123;</div><div class="line"> public:      // 注意有一个空格的缩进</div><div class="line">  MyClass();  // 标准的两空格缩进</div><div class="line">  explicit MyClass(int var);</div><div class="line">  ~MyClass() &#123;&#125;</div><div class="line">  void SomeFunction();</div><div class="line">  void SomeFunctionThatDoesNothing() &#123;</div><div class="line">  &#125;</div><div class="line">  void set_some_var(int var) &#123; some_var_ = var; &#125;</div><div class="line">  int some_var() const &#123; return some_var_; &#125;</div><div class="line"></div><div class="line"> private:</div><div class="line">  bool SomeInternalFunction();</div><div class="line">  int some_var_;</div><div class="line">  int some_other_var_;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<h2 id="3-11-构造函数初始值列表"><a href="#3-11-构造函数初始值列表" class="headerlink" title="3.11 构造函数初始值列表"></a>3.11 构造函数初始值列表</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">// 如果所有变量能放在同一行:</div><div class="line">MyClass::MyClass(int var) : some_var_(var) &#123;</div><div class="line">  DoSomething();</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 如果不能放在同一行,</div><div class="line">// 必须置于冒号后, 并缩进 4 个空格</div><div class="line">MyClass::MyClass(int var)</div><div class="line">    : some_var_(var), some_other_var_(var + 1) &#123;</div><div class="line">  DoSomething();</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 如果初始化列表需要置于多行, 将每一个成员放在单独的一行</div><div class="line">// 并逐行对齐</div><div class="line">MyClass::MyClass(int var)</div><div class="line">    : some_var_(var),             // 4 space indent</div><div class="line">      some_other_var_(var + 1) &#123;  // lined up</div><div class="line">  DoSomething();</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 右大括号 &#125; 可以和左大括号 &#123; 放在同一行</div><div class="line">// 如果这样做合适的话</div><div class="line">MyClass::MyClass(int var)</div><div class="line">    : some_var_(var) &#123;&#125;</div></pre></td></tr></table></figure>
+<h2 id="3-12-水平留白"><a href="#3-12-水平留白" class="headerlink" title="3.12 水平留白"></a>3.12 水平留白</h2><p>永远不要在行尾添加没意义的留白.<br><strong>通用：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">void f(bool b) &#123;  // 左大括号前总是有空格.</div><div class="line">  ...</div><div class="line">int i = 0;  // 分号前不加空格.</div><div class="line">// 列表初始化中大括号内的空格是可选的.</div><div class="line">// 如果加了空格, 那么两边都要加上.</div><div class="line">int x[] = &#123; 0 &#125;;</div><div class="line">int x[] = &#123;0&#125;;</div><div class="line">class Foo : &#123;</div><div class="line"> public:</div><div class="line">  // 对于单行函数的实现, 在大括号内加上空格</div><div class="line">  // 然后是函数实现</div><div class="line">  Foo(int b) : Bar(), baz_(b) &#123;&#125;  // 大括号里面是空的话, 不加空格.</div><div class="line">  void Reset() &#123; baz_ = 0; &#125;  // 用括号把大括号与实现分开.</div><div class="line">  ...</div></pre></td></tr></table></figure></p>
+<p><strong>循环和条件语句</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">if (b) &#123;          // if 条件语句和循环语句关键字后均有空格.</div><div class="line">&#125; else &#123;          // else 前后有空格.</div><div class="line">&#125;</div><div class="line">while (test) &#123;&#125;   // 圆括号内部不紧邻空格.</div><div class="line">switch (i) &#123;</div><div class="line">for (int i = 0; i &lt; 5; ++i) &#123;</div><div class="line">switch ( i ) &#123;    // 循环和条件语句的圆括号里可以与空格紧邻.</div><div class="line">if ( test ) &#123;     // 圆括号, 但这很少见. 总之要一致.</div><div class="line">for ( int i = 0; i &lt; 5; ++i ) &#123;</div><div class="line">for ( ; i &lt; 5 ; ++i) &#123;  // 循环里内 ; 后恒有空格, ;  前可以加个空格.</div><div class="line">switch (i) &#123;</div><div class="line">  case 1:         // switch case 的冒号前无空格.</div><div class="line">    ...</div><div class="line">  case 2: break;  // 如果冒号有代码, 加个空格.</div></pre></td></tr></table></figure></p>
+<p><strong>操作符</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// 赋值运算符前后总是有空格.</div><div class="line">x = 0;</div><div class="line">// 其它二元操作符也前后恒有空格, 不过对于表达式的子式可以不加空格.</div><div class="line">// 圆括号内部没有紧邻空格.</div><div class="line">v = w * x + y / z;</div><div class="line">v = w*x + y/z;</div><div class="line">v = w * (x + z);</div><div class="line">// 在参数和一元操作符之间不加空格.</div><div class="line">x = -5;</div><div class="line">++x;</div></pre></td></tr></table></figure></p>
+<h2 id="3-13-垂直留白"><a href="#3-13-垂直留白" class="headerlink" title="3.13 垂直留白"></a>3.13 垂直留白</h2><p>垂直留白越少越好。</p>
+<hr>
 <div class="note primary"><p><strong>版权声明</strong>： 本博客所有文章除特别声明外，均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="external">CC BY-NC-SA 4.0 许可协议</a>。转载请注明出处！ </p>
 </div>
 
@@ -502,8 +548,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/spring.jpg"
@@ -594,6 +649,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-命名约定"><span class="nav-number">1.</span> <span class="nav-text">1.命名约定</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-通用命名规则"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 通用命名规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-文件命名"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 文件命名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-类型命名"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 类型命名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-变量命名"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 变量命名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-常量命名"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 常量命名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-函数命名"><span class="nav-number">1.6.</span> <span class="nav-text">1.6 函数命名</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-类"><span class="nav-number">2.</span> <span class="nav-text">2.类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-类和结构体"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 类和结构体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-运算符重载"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 运算符重载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-声明顺序"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 声明顺序</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-格式"><span class="nav-number">3.</span> <span class="nav-text">3.格式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-行长度"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 行长度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-缩进"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 缩进</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-函数的声明定义调用"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 函数的声明定义调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-IF语句"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 IF语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-选择语句"><span class="nav-number">3.5.</span> <span class="nav-text">3.5 选择语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-循环语句"><span class="nav-number">3.6.</span> <span class="nav-text">3.6 循环语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-7-指针和引用表达式"><span class="nav-number">3.7.</span> <span class="nav-text">3.7 指针和引用表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-8-布尔表达式"><span class="nav-number">3.8.</span> <span class="nav-text">3.8 布尔表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-9-函数返回值"><span class="nav-number">3.9.</span> <span class="nav-text">3.9 函数返回值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-10-类格式"><span class="nav-number">3.10.</span> <span class="nav-text">3.10 类格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-11-构造函数初始值列表"><span class="nav-number">3.11.</span> <span class="nav-text">3.11 构造函数初始值列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-12-水平留白"><span class="nav-number">3.12.</span> <span class="nav-text">3.12 水平留白</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-13-垂直留白"><span class="nav-number">3.13.</span> <span class="nav-text">3.13 垂直留白</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
