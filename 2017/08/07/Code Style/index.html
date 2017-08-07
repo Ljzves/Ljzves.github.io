@@ -95,7 +95,7 @@
 <meta property="og:url" content="http://www.leaves.wiki/2017/08/07/Code Style/index.html">
 <meta property="og:site_name" content="Leaves&#39;s Blog">
 <meta property="og:description" content="本文介绍Leaves遵循的代码规范。这是一种基于Google Code Style的代码规范。">
-<meta property="og:updated_time" content="2017-08-07T10:39:02.000Z">
+<meta property="og:updated_time" content="2017-08-07T12:44:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leaves&#39;s Code Style for OI">
 <meta name="twitter:description" content="本文介绍Leaves遵循的代码规范。这是一种基于Google Code Style的代码规范。">
@@ -384,7 +384,7 @@
 <h2 id="2-2-运算符重载"><a href="#2-2-运算符重载" class="headerlink" title="2.2 运算符重载"></a>2.2 运算符重载</h2><p>尽可能不要重载运算符。 禁止创建用户定义字面量。</p>
 <h2 id="2-3-声明顺序"><a href="#2-3-声明顺序" class="headerlink" title="2.3 声明顺序"></a>2.3 声明顺序</h2><p>类定义一般应以 public: 开始, 后跟 private:<br>在每一部分中，按如下顺序申明：构造函数，析构函数，重载运算符，其它函数，成员变量。</p>
 <hr>
-<h1 id="3-格式"><a href="#3-格式" class="headerlink" title="3.格式"></a>3.格式</h1><p>大括号换行不换行均可，因为本人大括号换行，下面的例子大括号均换行。</p>
+<h1 id="3-格式"><a href="#3-格式" class="headerlink" title="3.格式"></a>3.格式</h1><p>大括号换行不换行均可，因为本人大括号不换行，下面的例子大括号均不换行。</p>
 <h2 id="3-1-行长度"><a href="#3-1-行长度" class="headerlink" title="3.1 行长度"></a>3.1 行长度</h2><p>每一行代码字符数不超过80。</p>
 <h2 id="3-2-缩进"><a href="#3-2-缩进" class="headerlink" title="3.2 缩进"></a>3.2 缩进</h2><p>把Tab改成两格空格缩进。</p>
 <h2 id="3-3-函数的声明定义调用"><a href="#3-3-函数的声明定义调用" class="headerlink" title="3.3 函数的声明定义调用"></a>3.3 函数的声明定义调用</h2><p>返回类型和函数名在同一行, 参数也尽量放在同一行, 如果放不下就对形参分行。<br><strong>说明：</strong><br>参数不换行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ReturnType ClassName::FunctionName(Type par_name1, Type par_name2) &#123;</div><div class="line">  DoSomething();</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
