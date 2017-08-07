@@ -25,8 +25,8 @@
     <content type="text"><![CDATA[定义字符串$s$的起始位置为1长度为$len$，$s[i]$表示字符串第$i$位的字符。后缀：用$suff[i]$表示由$s[i]~s[len]$组成的字符串。]]></content>
       <tags>
         <tag>OI</tag>
-        <tag>笔记</tag>
         <tag>后缀数组</tag>
+        <tag>笔记</tag>
         <tag>字符串</tag>
       </tags>
   </entry>
@@ -45,8 +45,8 @@
     <url>%2F2017%2F05%2F18%2Fqt%E7%AC%94%E8%AE%B0%2F</url>
     <content type="text"><![CDATA[1、常用控件菜单栏123456789101112131415#include &lt;QMenuBar&gt;#include &lt;QMenu&gt;#include &lt;QAction&gt;...// 菜单栏QMenuBar *mBar = menuBar();// 添加菜单QMenu *pFile = mBar-&gt;addMenu("文件");// 菜单项和动作QAction *pNew = pFile-&gt;addAction("新建");connect(pNew, &amp;QAction::triggered, [=]() &#123; qDebug() &lt;&lt; "新建被触发";&#125;);pFile-&gt;addSeparator(); // 分割线QAction *pOpen = pFile-&gt;addAction("打开"); 工具栏工具栏的实质是菜单栏的快捷方式 123456#include &lt;QToolBar&gt;...QToolBar *toolBar = addToolBar(&quot;toolBar&quot;);toolBar-&gt;addAction(pNew);QPushButton *qButton = new QPushButton(this);toolBar-&gt;addWidget(qButton); 状态栏12345678#include &lt;QStatusBar&gt;...QStatusBar *sBar = statusBar();QLabel *lable = new QLabel(this); lable-&gt;setText(&quot;Normal&quot;);sBar-&gt;addWidget(lable);sBar-&gt;addWidget(new QLabel(&quot;2&quot;, this));sBar-&gt;addPermanentWidget(new QLabel(&quot;3&quot;, this)); 核心控件核心控件有很多这里只是随便展示一种 1234#include &lt;QTextEdit&gt;...QTextEdit *textarea = new QTextEdit(this);setCentralWidget(textarea); 浮动窗口123456#include &lt;QDockWidget&gt;... QDockWidget *dw = new QDockWidget(this);addDockWidget(Qt::RightDockWidgetArea, dw);QTextEdit *textarea2 = new QTextEdit(this);dw-&gt;setWidget(textarea2); 对话框1234567891011121314151617181920212223242526272829303132333435363738QMenuBar *mBar = menuBar(); setMenuBar(mBar);QMenu *menu = mBar-&gt;addMenu(&quot;对话框&quot;);QAction *p1 = menu-&gt;addAction(&quot;模态对话框&quot;);connect(p1, &amp;QAction::triggered, [=]() &#123; QDialog dlg; dlg.exec(); qDebug() &lt;&lt; &quot;1&quot;;&#125;);QAction *p2 = menu-&gt;addAction(&quot;非模态对话框&quot;);connect(p2, &amp;QAction::triggered, [=]() &#123; QDialog *dlg = new QDialog; dlg-&gt;setAttribute(Qt::WA_DeleteOnClose); dlg-&gt;show(); qDebug() &lt;&lt; &quot;2&quot;;&#125;);QAction *p3 = menu-&gt;addAction(&quot;关于对话框&quot;);connect(p3, &amp;QAction::triggered, [=]() &#123; QMessageBox::about(this, &quot;关于&quot;, &quot;Copyright 2016~2017&quot;);&#125;);QAction *p4 = menu-&gt;addAction(&quot;问题对话框&quot;);connect(p4, &amp;QAction::triggered, [=]() &#123; int ret = QMessageBox::question(this, &quot;question&quot;, &quot;Are you ok?&quot;); switch (ret) &#123; case QMessageBox::Yes: qDebug() &lt;&lt; &quot;I&apos;m ok&quot;; break; case QMessageBox::No: qDebug() &lt;&lt; &quot;I&apos;m not ok&quot;; break; &#125;&#125;);QAction *p5 = menu-&gt;addAction(&quot;文件对话框&quot;);connect(p5, &amp;QAction::triggered, [=]() &#123; QString path = QFileDialog::getOpenFileName(this, &quot;open&quot;, &quot;../&quot;, &quot;souce(*.cpp*.h);;Text(*.txt);;All(*.*)&quot; ); qDebug() &lt;&lt; path;&#125;);]]></content>
       <tags>
-        <tag>工程</tag>
         <tag>笔记</tag>
+        <tag>工程</tag>
       </tags>
   </entry>
   <entry>
@@ -54,8 +54,8 @@
     <url>%2F2017%2F05%2F15%2FGithub%2F</url>
     <content type="text"><![CDATA[git命令整理基本概念 仓库(Repository)：用来存放项目代码。 收藏(Star)：就是收藏 分叉(fork)：复制一个项目，作为个人项目修改。 合并请求(Pull request) 关注(Watch) (lssue) 命令 git config —global user.name ‘’ git config —global user.email ‘’ git init：初始化仓库 git status：文件状态 git add ：加入到缓存区 git commit -m “” ：添加到库中 git log：日志 git log —pretty=oneline ：简略版日志 git reset —hard 3628164 ：会到历史版本 git reset —hard HEAD^ ：回到上一个版本 git reflog ：用来记录你的每一个命令 git reset HEAD readme.txt ：撤回 git checkout — : 用版本库里的版本替换工作区的版本 关联远程库 ssh-keygen -t rsa -C “youremail@example.com” git remote add origin git@github.com:michaelliao/learngit.git git push -u origin master 分支查看分支：git branch创建分支：git branch 切换分支：git checkout 创建+切换分支：git checkout -b 合并某分支到当前分支：git merge 删除分支：git branch -d 分支合并图：git log —graph 教程推荐Git教程]]></content>
       <tags>
-        <tag>工程</tag>
         <tag>笔记</tag>
+        <tag>工程</tag>
       </tags>
   </entry>
 </search>
