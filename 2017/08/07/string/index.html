@@ -88,17 +88,17 @@
 
 
 
-<meta name="description" content="本文介绍在OI中常用的字符串算法及个人的一些刷题心得  字符串Hash  版权声明： 本博客所有文章除特别声明外，均采用CC BY-NC-SA 4.0 许可协议。转载请注明出处！">
+<meta name="description" content="本文介绍在OI中常用的字符串算法及个人的一些刷题心得  Rabin-Karp Rabin-Karp是一种$O(n)$预处理、$O(1)$得到字符串及其子串的Hash值的算法。  代码本人比较喜欢双取模Hash，一个自然溢出，一个对19260817取模。  $kBase$应大于字符集大小 注意Hash值正负的问题  123456789101112131415161718192021222324252">
 <meta name="keywords" content="OI,笔记,字符串,Hash">
 <meta property="og:type" content="article">
 <meta property="og:title" content="字符串笔记">
 <meta property="og:url" content="http://www.leaves.wiki/2017/08/07/string/index.html">
 <meta property="og:site_name" content="Leaves&#39;s Blog">
-<meta property="og:description" content="本文介绍在OI中常用的字符串算法及个人的一些刷题心得  字符串Hash  版权声明： 本博客所有文章除特别声明外，均采用CC BY-NC-SA 4.0 许可协议。转载请注明出处！">
-<meta property="og:updated_time" content="2017-08-15T12:05:00.000Z">
+<meta property="og:description" content="本文介绍在OI中常用的字符串算法及个人的一些刷题心得  Rabin-Karp Rabin-Karp是一种$O(n)$预处理、$O(1)$得到字符串及其子串的Hash值的算法。  代码本人比较喜欢双取模Hash，一个自然溢出，一个对19260817取模。  $kBase$应大于字符集大小 注意Hash值正负的问题  123456789101112131415161718192021222324252">
+<meta property="og:updated_time" content="2017-08-17T12:03:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="字符串笔记">
-<meta name="twitter:description" content="本文介绍在OI中常用的字符串算法及个人的一些刷题心得  字符串Hash  版权声明： 本博客所有文章除特别声明外，均采用CC BY-NC-SA 4.0 许可协议。转载请注明出处！">
+<meta name="twitter:description" content="本文介绍在OI中常用的字符串算法及个人的一些刷题心得  Rabin-Karp Rabin-Karp是一种$O(n)$预处理、$O(1)$得到字符串及其子串的Hash值的算法。  代码本人比较喜欢双取模Hash，一个自然溢出，一个对19260817取模。  $kBase$应大于字符集大小 注意Hash值正负的问题  123456789101112131415161718192021222324252">
 
 
 
@@ -372,8 +372,18 @@
       
         <blockquote class="blockquote-center"><p>本文介绍在OI中常用的字符串算法及个人的一些刷题心得</p>
 </blockquote>
-<h1 id="字符串Hash"><a href="#字符串Hash" class="headerlink" title="字符串Hash"></a>字符串Hash</h1><blockquote>
+<h1 id="Rabin-Karp"><a href="#Rabin-Karp" class="headerlink" title="Rabin-Karp"></a>Rabin-Karp</h1><blockquote>
+<p>Rabin-Karp是一种$O(n)$预处理、$O(1)$得到字符串及其子串的Hash值的算法。</p>
 </blockquote>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>本人比较喜欢双取模Hash，一个自然溢出，一个对19260817取模。</p>
+<ul>
+<li>$kBase$应大于字符集大小</li>
+<li>注意Hash值正负的问题</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">class Hash &#123;</div><div class="line"> public:</div><div class="line">  Hash(char *ch) &#123;</div><div class="line">    int len = strlen(ch+1);</div><div class="line">    hash1_[0] = hash2_[0] = 0;</div><div class="line">    for (int i = 1; i &lt;= len; ++i) &#123;</div><div class="line">      hash1_[i] = hash1_[i-1]*kBase + ch[i] - &apos;a&apos;; </div><div class="line">      hash2_[i] = (hash2_[i-1]*kBase + ch[i] - &apos;a&apos;) % kP;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  static void init() &#123;</div><div class="line">    mi1_[0] = mi2_[0] = 1;</div><div class="line">    for (int i = 1; i &lt; kLen; ++i) &#123;</div><div class="line">      mi1_[i] = mi1_[i-1] * kBase;</div><div class="line">      mi2_[i] = mi2_[i-1] * kBase % kP;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  std::pair&lt;ll, ll&gt; GetHash(int l, int r) &#123;</div><div class="line">    std::pair&lt;ll, ll&gt; ans;</div><div class="line">    ans.first = hash1_[r] - hash1_[l-1]*mi1_[r-l+1];</div><div class="line">    ans.second = ((hash2_[r]-hash2_[l-1]*mi2_[r-l+1])%kP+kP)%kP;</div><div class="line">    return ans;</div><div class="line">  &#125;</div><div class="line"> private:</div><div class="line">  static const ll kBase = 27, kP = 19260817;</div><div class="line">  static ll mi1_[kLen], mi2_[kLen];</div><div class="line">  ll hash1_[kLen], hash2_[kLen];</div><div class="line">&#125;;</div><div class="line">ll Hash::mi1_[kLen], Hash::mi2_[kLen];</div></pre></td></tr></table></figure>
+<h2 id="拓展应用"><a href="#拓展应用" class="headerlink" title="拓展应用"></a>拓展应用</h2><p>暂时还不知道有什么其他的应用，欢迎在评论区补充。</p>
+<hr>
+<h1 id="KMP"><a href="#KMP" class="headerlink" title="KMP"></a>KMP</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
 <div class="note primary"><p><strong>版权声明</strong>： 本博客所有文章除特别声明外，均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="external">CC BY-NC-SA 4.0 许可协议</a>。转载请注明出处！ </p>
 </div>
 
@@ -619,7 +629,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串Hash"><span class="nav-number">1.</span> <span class="nav-text">字符串Hash</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Rabin-Karp"><span class="nav-number">1.</span> <span class="nav-text">Rabin-Karp</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">1.1.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拓展应用"><span class="nav-number">1.2.</span> <span class="nav-text">拓展应用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#KMP"><span class="nav-number">2.</span> <span class="nav-text">KMP</span></a></li></ol></div>
             
 
           </div>
