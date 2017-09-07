@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[数学相关]]></title>
+    <url>%2F2017%2F09%2F07%2FMath%2F</url>
+    <content type="text"><![CDATA[$E=\sum_i^{+\infty}P(i)$]]></content>
+      <tags>
+        <tag>OI</tag>
+        <tag>数学ty</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[字符串笔记]]></title>
     <url>%2F2017%2F08%2F07%2Fstring%2F</url>
     <content type="text"><![CDATA[本文介绍在OI中常用的字符串算法及个人的一些刷题心得 Rabin-Karp Rabin-Karp是一种$O(n)$预处理、$O(1)$得到字符串及其子串的Hash值的算法。 代码本人比较喜欢双取模Hash，一个自然溢出，一个对19260817取模。 $kBase$应大于字符集大小 注意Hash值正负的问题 1234567891011121314151617181920212223242526272829class Hash &#123; public: Hash(char *ch) &#123; int len = strlen(ch+1); hash1_[0] = hash2_[0] = 0; for (int i = 1; i &lt;= len; ++i) &#123; hash1_[i] = hash1_[i-1]*kBase + ch[i] - &apos;a&apos;; hash2_[i] = (hash2_[i-1]*kBase + ch[i] - &apos;a&apos;) % kP; &#125; &#125; static void init() &#123; mi1_[0] = mi2_[0] = 1; for (int i = 1; i &lt; kLen; ++i) &#123; mi1_[i] = mi1_[i-1] * kBase; mi2_[i] = mi2_[i-1] * kBase % kP; &#125; &#125; std::pair&lt;ll, ll&gt; GetHash(int l, int r) &#123; std::pair&lt;ll, ll&gt; ans; ans.first = hash1_[r] - hash1_[l-1]*mi1_[r-l+1]; ans.second = ((hash2_[r]-hash2_[l-1]*mi2_[r-l+1])%kP+kP)%kP; return ans; &#125; private: static const ll kBase = 27, kP = 19260817; static ll mi1_[kLen], mi2_[kLen]; ll hash1_[kLen], hash2_[kLen];&#125;;ll Hash::mi1_[kLen], Hash::mi2_[kLen]; 拓展应用暂时还不知道有什么其他的应用，欢迎在评论区补充。 KMP12 版权声明： 本博客所有文章除特别声明外，均采用CC BY-NC-SA 4.0 许可协议。转载请注明出处！]]></content>
